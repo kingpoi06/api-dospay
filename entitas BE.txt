@@ -1,0 +1,70 @@
+Super User:
+1. Admin
+2. Bendahara
+
+User admin:
+Nama, email, Kata Sandi
+
+User Bendahara: (admin Akses)
+Nama, NIP, No.Telp, Alamat, Email, Kata Sandi
+
+Konfigurasi Satker Univ: (admin)
+1. Kode Satker
+2. Nama Satker
+3. Kode KPPN
+4. Nama KPPN
+5. Email
+6. Nomor Telp.
+7. NPWP
+8. NAMA PPK
+9. Kota Univ
+10. Provinsi
+11. Kode POS
+12. Alamat
+
+Konfigurasi Cabang Satker Fakultas: (admin)
+1. Kode Satket
+2. Nama Satker
+3. Kode Anak
+4. Nama Anak
+5. Jenis Menu
+
+Konfigurasi R/U/H Pejabat: (User Bendahara dan Admin)
+1. Kode Satker
+2. Nama Satker
+3. NIP/NRP
+4. Konf NIP/NRP
+5. NIK
+6. Nama Pegawai
+7. Jabatan
+8. Kedudukan
+9. Juru Bayar
+
+Resote Data Pegawai: (Bendahara)
+1. Satker
+2. Kode Anak Satker
+3. Tanggal Rilis Upload
+4. Upload File (min 5 Mb)
+
+Gaji Bank Pegawai:
+1. Kode Satker
+2. Kode Anak Satker
+3. Tanggal Rilis Upload
+4. No Gaji
+5. NIP
+6. Nama Dosen
+7. Kode Golongan
+8. NPWP
+9. Nama Rekening
+10. No Rekening
+11. Nama Bank
+12. Kode Bank
+13. Gaji Pokok
+
+Tambah Tunjangan Kehormatan:
+1. Kode Satker
+2. Kode Anak
+3. Tanggal
+4. Keterangan
+
+
