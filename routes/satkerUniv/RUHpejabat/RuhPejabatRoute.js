@@ -5,7 +5,7 @@ import {
   createPejabat,
   updatePejabat,
   deletePejabat,
-} from "../../../controllers/satkeruniv/RUHPejabat/RUHPejabat.js";
+} from "../../../controllers/satkerUniv/RUHpejabat/RUHPejabat.js";
 import { allroleOnly } from "../../../middleware/userOnly.js";
 
 const router = express.Router();
