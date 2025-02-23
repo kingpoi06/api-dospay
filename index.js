@@ -36,7 +36,7 @@ app.use(
   cors({
     credentials: true,
     // origin: ["http://localhost:5173", ""],
-    origin: ["http://localhost:5173"],
+    origin: ["http://localhost:3000"],
   })
 );
 
@@ -79,7 +79,7 @@ app.use(TanggalKehormatanRoute);
 app.use(TanggalProfesiRoute);
 
 
-const PORT = process.env.PORT || 8080;
+const PORT = process.env.PORT;
 app.listen(PORT, () => {
   console.log(`Server up and running on port ${PORT}`);
 });

@@ -209,6 +209,8 @@ export const getRestorepegawaiByUuid = async (req, res) => {
               gjpokok: row.gjpokok || "Tidak Diketahui",
               kdgapok: row.kdgapok || "Tidak Diketahui",
               bpjs: row.bpjs || "Tidak Diketahui",
+              kdanak: row.kdanak || "Unknown",
+              cabangsatkerKdanak: kdanak,
             }));
       
             // Menggunakan Promise.all untuk mengoptimalkan upsert

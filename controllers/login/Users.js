@@ -17,6 +17,7 @@ export const getUsers = async (req, res) => {
         "notelp",
         "alamat",
         "email",
+        "password",
         "role",
         "jwt_token",
       ],
