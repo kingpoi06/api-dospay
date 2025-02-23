@@ -1,4 +1,4 @@
-import Satkeruniv from "../../../models/satkeruniv/SatkerUnivModel.js";
+import Satkeruniv from "../../../models/satkerUniv/cabang/CabangSatkerModel.js";
 import Cabangsatker from "../../../models/satkerUniv/cabang/CabangSatkerModel.js"
 import { Op } from "sequelize";
 

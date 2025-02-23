@@ -5,7 +5,7 @@ import {
   createSatkerUniv,
   updateSatkerUniv,
   deleteSatkerUniv,
-} from "../../controllers/satkeruniv/SatkerUniv.js";
+} from "../../controllers/satkerUniv/SatkerUniv.js";
 import { adminOnly } from "../../middleware/userOnly.js";
 
 const router = express.Router();

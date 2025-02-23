@@ -1,4 +1,4 @@
-import Satkeruniv from "../../models/satkeruniv/SatkerUnivModel.js";
+import Satkeruniv from "../../models/satkerUniv/SatkerUnivModel.js";
 import Users from "../../models/UserModel.js";
 import { Op } from "sequelize";
 
