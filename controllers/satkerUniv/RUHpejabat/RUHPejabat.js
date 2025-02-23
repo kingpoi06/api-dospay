@@ -1,5 +1,5 @@
 import Satkeruniv from "../../../models/satkerUniv/SatkerUnivModel.js";
-import RUHPejabat from "../../../models/satkerUniv/RUHPejabat/RuhPejabatModel.js";
+import RUHPejabat from "../../../models/satkerUniv/RUHpejabat/RuhPejabatModel.js";
 import { Op } from "sequelize";
 
 
