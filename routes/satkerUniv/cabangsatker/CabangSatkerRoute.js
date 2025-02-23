@@ -5,7 +5,7 @@ import {
   createCabangSatker,
   updateCabangSatker,
   deleteCabangSatker,
-} from "../../../controllers/satkeruniv/cabangsatker/CabangSatker.js";
+} from "../../../controllers/satkerUniv/cabangsatker/CabangSatker.js";
 import { adminOnly } from "../../../middleware/userOnly.js";
 
 const router = express.Router();
