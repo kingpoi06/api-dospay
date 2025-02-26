@@ -11,10 +11,10 @@ import { adminOnly } from "../../../../../middleware/userOnly.js";
 
 const router = express.Router();
 
-router.get("/tunjangankehormatan", getTunjanganprofesi);
-router.get("/tunjangankehormatan/:nip", getTunjanganprofesiByNip);
-router.post("/tunjangankehormatan", adminOnly, createTunjanganprofesi);
-router.patch("/tunjangankehormatan/:nip", adminOnly,  updateTunjanganprofesi);
-router.delete("/tunjangankehormatan/:nip", adminOnly,  deleteTunjanganprofesi);
+router.get("/tunjanganprofesi", getTunjanganprofesi);
+router.get("/tunjanganprofesi/:nip", getTunjanganprofesiByNip);
+router.post("/tunjanganprofesi", adminOnly, createTunjanganprofesi);
+router.patch("/tunjanganprofesi/:nip", adminOnly,  updateTunjanganprofesi);
+router.delete("/tunjanganprofesi/:nip", adminOnly,  deleteTunjanganprofesi);
 
 export default router;

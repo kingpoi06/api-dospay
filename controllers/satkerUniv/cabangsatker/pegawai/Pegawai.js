@@ -7,6 +7,7 @@ import { Op } from "sequelize";
 export const getPegawai = async (req, res) => {
     try {
         let response;
+        
         if (req.role === "cabang" || req.role === "admin") {
           response = await Pegawai.findAll({
             include: [
@@ -41,7 +42,11 @@ export const getPegawai = async (req, res) => {
               ],
             });
         }
-        res.status(200).json(response);
+        res.status(200).json({
+          message: `Data PEGAWAI!`,
+          Data: [response],
+        });
+        
       } catch (error) {
         res.status(500).json({ msg: error.message });
       }
@@ -93,7 +98,10 @@ export const getPegawai = async (req, res) => {
               ],
             });
           }
-          res.status(200).json(response);
+          res.status(200).json({
+            message: `Data PEGAWAI dengan NIP ${req.params.nip}`,
+            Data: [response],
+          });
         } catch (error) {
           res.status(500).json({ msg: error.message });
         }

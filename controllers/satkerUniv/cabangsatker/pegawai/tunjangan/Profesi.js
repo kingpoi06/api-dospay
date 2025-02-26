@@ -41,7 +41,10 @@ export const getTunjanganprofesi = async (req, res) => {
             });
         }
 
-        res.status(200).json(response);
+        res.status(200).json({
+            message: `Data Tunjangan Profesi Pegawai`,
+            Data: [response], 
+          });
     } catch (error) {
         console.error("Error fetching Tunjangan Profesi:", error);
         res.status(500).json({ msg: error.message });
@@ -89,7 +92,10 @@ export const getTunjanganprofesiByNip = async (req, res) => {
             return res.status(404).json({ msg: "Data not found!" });
         }
 
-        res.status(200).json(response);
+        res.status(200).json({
+            message: `Data Tunjangan Profesi dari NIP ${req.params.nip}`,
+            Data: [response],
+          });
     } catch (error) {
         console.error("Error fetching Tunjangan Profesi by NIP:", error);
         res.status(500).json({ msg: error.message });

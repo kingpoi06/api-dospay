@@ -1,12 +1,12 @@
 // import { Sequelize } from "sequelize";
-// import { Connector } from "@google-cloud/cloud-sql-connector";
+// // import { Connector } from "@google-cloud/cloud-sql-connector";
 
-// const connector = new Connector();
+// // const connector = new Connector();
 
-// const clientOpts = await connector.getOptions({
-//   instanceConnectionName: "caklalapar:asia-southeast2:akusehat",
-//   ipType: "PUBLIC",
-// });
+// // const clientOpts = await connector.getOptions({
+// //   instanceConnectionName: "caklalapar:asia-southeast2:akusehat",
+// //   ipType: "PUBLIC",
+// // });
 
 // const db = new Sequelize("Dospay_db", "root", "", {
 //   host: "localhost",

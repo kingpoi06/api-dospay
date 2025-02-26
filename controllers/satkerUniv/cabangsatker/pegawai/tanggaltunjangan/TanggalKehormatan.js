@@ -41,7 +41,10 @@ export const getTanggalkehormatan = async (req, res) => {
           ],
       });
     }
-    res.status(200).json(response);
+    res.status(200).json({
+      message: `Data Tanggal Tunjangan Kehormatan Pegawai`,
+      Data: [response], 
+    });
   } catch (error) {
     res.status(500).json({ msg: error.message });
   }
@@ -93,7 +96,10 @@ export const getTanggalkehormatanByKDtunjangan = async (req, res) => {
           ],
       });
     }
-    res.status(200).json(response);
+    res.status(200).json({
+      message: `Data Tanggal Tunjangan Kehormatan Pegawai Kode Tunjangan ${req.params.kdtunjangan}`,
+      Data: [response], 
+    });
   } catch (error) {
     res.status(500).json({ msg: error.message });
   }

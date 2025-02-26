@@ -24,56 +24,40 @@ export const postLogin = async (req, res) => {
         .json({ msg: "Password Salah. Silahkan Masukan Lagi!" });
     }
 
-    const { uuid, username, namalengkap, email, jabatan, satuankerja, role } = user;
+    const { uuid, username, namalengkap, email, jabatan, satuankerja, role } =
+      user;
 
     const accessToken = jwt.sign(
       { uuid, username, namalengkap, email, jabatan, satuankerja, role },
       process.env.ACCESS_TOKEN_SECRET,
-      {
-        expiresIn: "900s",
-      }
+      { expiresIn: "900s" }
     );
 
     const refreshToken = jwt.sign(
       { uuid, username, namalengkap, email, jabatan, satuankerja, role },
       process.env.REFRESH_TOKEN_SECRET,
-      {
-        expiresIn: "3600s",
-      }
+      { expiresIn: "3600s" }
     );
 
-    // Update jwt_token in database
+    // Update jwt_token di database
     await Users.update(
       { jwt_token: refreshToken },
       {
-        where: {
-          uuid: user.uuid,
-        },
+        where: { uuid: user.uuid },
       }
     );
 
-    // Initialize req.session if not already initialized
-    if (!req.session) {
-      req.session = {};
-    }
+    // ✅ Simpan refreshToken dalam Cookie
+    res.cookie("refreshToken", refreshToken, {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === "production", // Gunakan secure di mode production
+      sameSite: "Strict",
+      maxAge: 3600000, // 1 jam
+    });
 
-    // Set userUuid in req object
-    req.session.userUuid = user.uuid;
-    req.userUuid = user.uuid;
-
-    // Save session
-    req.session.userData = {
-      uuid: user.uuid,
-      username: user.username,
-      namalengkao: user.namalengkap,
-      email: user.email,
-      jabatan: user.jabatan,
-      satuankerja: user.satuankerja,
-      role: user.role,
-    };
-
-    // Send tokens in response
+    // ✅ Simpan akses token di header Authorization
     res.set("Authorization", `Bearer ${accessToken}`);
+
     res.json({ accessToken, refreshToken });
   } catch (error) {
     console.error("postLogin error:", error);
@@ -83,27 +67,24 @@ export const postLogin = async (req, res) => {
 
 export const deleteLogout = async (req, res) => {
   try {
-    const refreshToken = req.cookies.refreshToken;
+    const refreshToken = req.cookies.refreshToken; // ✅ Ambil token dari cookie
 
     if (!refreshToken) {
       return res.sendStatus(401); // Unauthorized
     }
 
-    const decodedToken = jwt.verify(
-      refreshToken,
-      process.env.REFRESH_TOKEN_SECRET
-    );
-
     const user = await Users.findOne({
-      where: {
-        uuid: decodedToken.uuid,
-      },
+      where: { jwt_token: refreshToken },
     });
 
     if (!user) {
-      return res.sendStatus(404); // Not Found
+      return res.sendStatus(404); // User not found
     }
 
+    // ✅ Hapus refreshToken dari database
+    await Users.update({ jwt_token: null }, { where: { uuid: user.uuid } });
+
+    // ✅ Hapus cookie di browser
     res.clearCookie("refreshToken", {
       httpOnly: true,
       secure: process.env.NODE_ENV === "production",

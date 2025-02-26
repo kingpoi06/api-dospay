@@ -41,7 +41,10 @@ export const getTanggalprofesi = async (req, res) => {
           ],
       });
     }
-    res.status(200).json(response);
+    res.status(200).json({
+      message: `Data Tanggal Tunjangan Profesi Pegawai`,
+      Data: [response], 
+    });
   } catch (error) {
     res.status(500).json({ msg: error.message });
   }
@@ -93,7 +96,10 @@ export const getTanggalprofesiByKDtunjangan = async (req, res) => {
           ],
       });
     }
-    res.status(200).json(response);
+    res.status(200).json({
+      message: `Data Tanggal Tunjangan Profesi Pegawai dengan Kode Tunjangan ${req.params.kdtunjangan}`,
+      Data: [response], 
+    });
   } catch (error) {
     res.status(500).json({ msg: error.message });
   }

@@ -60,7 +60,10 @@ export const getRestorePegawai = async (req, res) => {
               ],
             });
         }
-        res.status(200).json(response);
+        res.status(200).json({
+          message: `Data File Excel yang telah di Export`,
+          Data: [response],
+        });
       } catch (error) {
         res.status(500).json({ msg: error.message });
       }
@@ -124,7 +127,10 @@ export const getRestorepegawaiByUuid = async (req, res) => {
               ],
             });
           }
-          res.status(200).json(response);
+          res.status(200).json({
+            message: `Data File Excel yang telah di Export`,
+            Data: response,
+          });
         } catch (error) {
           res.status(500).json({ msg: error.message });
         }

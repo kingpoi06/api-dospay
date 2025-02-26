@@ -1,0 +1,125 @@
+Dokumentasi endpoint: https://api-dospay.onrender.com
+
+#users
+GET, POST, PATCH, DELETE
+/users
+
+#Authentification
+login: 	/login  	 ---> POST
+[username, password]
+
+logout:	/logout		 ---> DELETE
+
+#SatuanKerjaUniversitas (SatkerUniv)
+
+[kdsatker, nmsatker, kdkppn, nmkppn, email, notelp, npwp, nmppk, kota, provinsi, kdpos, alamat]  ---> FIELD VARIABLE
+
+router.get	--->    /satkeruniv
+router.get	--->	/satkeruniv/:kdsatker
+router.post	--->	/satkeruniv
+router.patch	--->	/satkeruniv/:kdsatker
+router.delete	--->	/satkeruniv/:kdsatker
+
+
+--------------------------------------------------------------------------------------
+
+#Anak Satker (CabangSatker)
+
+[kdanak, nmanak, kdsubanak, modul, kdsatker] ---> FIELD VARIABLE
+
+router.get	--->    /cabangsatker
+router.get	--->	/cabangsatker/:kdanak
+router.post	--->	/cabangsatker
+router.patch	--->	/cabangsatker/:kdanak
+router.delete	--->	/cabangsatker/:kdanak
+
+
+--------------------------------------------------------------------------------------
+
+#RUH PEJABAT
+
+[nip, nik, nmpeg, kdjab, nmjab, kdduduk, nmduduk, jurubayar, kdsatker] ---> FIELD VARIABLE
+
+router.get	--->    /ruhpejabat
+router.get	--->	/ruhpejabat/:nip
+router.post	--->	/ruhpejabat
+router.patch	--->	/ruhpejabat/:nip
+router.delete	--->	/ruhpejabat/:nip
+
+
+--------------------------------------------------------------------------------------
+
+#RESTORE PEGAWAI
+
+[bulan, tahun, kdanak] ---> FIELD VARIABLE
+
+router.get	--->    /upload-excel
+router.get	--->	/upload-excel/:uuid
+router.post	--->	/upload-excel
+router.patch	--->	/upload-excel/:uuid
+router.delete	--->	/upload-excel/:uuid
+
+
+--------------------------------------------------------------------------------------
+
+#PEGAWAI
+
+[nmpeg, nip, kdjab, kdkawin, gaji_bersih, nogaji, bulan, tahun, kdgol, kdduduk, npwp, nmrek, nm_bank, rekening, kdbankspan, nmbankspan, kdnegara, kdkppn, kdpos, gjpokok, kdgapok, bpjs, kdanak,] ---> FIELD VARIABLE
+
+router.get	--->    /pegawai
+router.get	--->	/pegawai/:nip
+router.post	--->	/pegawai
+router.patch	--->	/pegawai/:nip
+router.delete	--->	/pegawai/:nip
+
+
+--------------------------------------------------------------------------------------
+
+#TANGGAL TUNJANGAN KEHORMATAN
+
+[kdtunjangan, bulan, tahun, tanggal, keterangan, kdanak] ---> FIELD VARIABLE
+
+router.get	--->    /tanggalkehormatan
+router.get	--->	/tanggalkehormatan/:kdtunjangan
+router.post	--->	/tanggalkehormatan
+router.patch	--->	/tanggalkehormatan/:kdtunjangan
+router.delete	--->	/tanggalkehormatan/:kdtunjangan
+
+
+--------------------------------------------------------------------------------------
+
+#TANGGAL TUNJANGAN PROFESI
+
+[kdtunjangan, bulan, tahun, tanggal, keterangan, kdanak] ---> ---> FIELD VARIABLE
+
+router.get	--->    /tanggalprofesi
+router.get	--->	/tanggalprofesi/:kdtunjangan
+router.post	--->	/tanggalprofesi
+router.patch	--->	/tanggalprofesi/:kdtunjangan
+router.delete	--->	/tanggalprofesi/:kdtunjangan
+
+
+--------------------------------------------------------------------------------------
+
+#Tunjangan KEHORMATAN
+
+[nmpeg, nip, kdgol, gjpokok, besartunjangan, pajakpph, totalpph, jmlditerima, kdtunjangan] ---> FIELD VARIABLE
+
+router.get	--->    /tunjangankehormatan
+router.get	--->	/tunjangankehormatan/:nip
+router.post	--->	/tunjangankehormatan
+router.patch	--->	/tunjangankehormatan/:nip
+router.delete	--->	/tunjangankehormatan/:nip
+
+
+--------------------------------------------------------------------------------------
+
+#Tunjangan PROFESI
+
+[nmpeg, nip, kdgol, gjpokok, pajakpph, totalpph, jmlditerima, kdtunjangan] ---> FIELD VARIABLE
+
+router.get	--->    /tunjanganprofesi
+router.get	--->	/tunjanganprofesi/:nip
+router.post	--->	/tunjanganprofesi
+router.patch	--->	/tunjanganprofesi/:nip
+router.delete	--->	/tunjanganprofesi/:nip

@@ -17,7 +17,6 @@ export const getPejabat = async (req, res) => {
           "kdduduk",
           "nmduduk",
           "jurubayar",
-          "createdAt",
         ],
         include: [
           {
@@ -37,7 +36,6 @@ export const getPejabat = async (req, res) => {
           "kdduduk",
           "nmduduk",
           "jurubayar",
-          "createdAt",
         ],
         where: {
             kdsatker: req.kdsatker,
@@ -50,7 +48,10 @@ export const getPejabat = async (req, res) => {
         ],
       });
     }
-    res.status(200).json(response);
+    res.status(200).json({
+      message: `Data RUH PEJABAT`,
+      Data: [response], 
+    });
   } catch (error) {
     res.status(500).json({ msg: error.message });
   }
@@ -76,7 +77,6 @@ export const getPejabatByNip = async (req, res) => {
           "kdduduk",
           "nmduduk",
           "jurubayar",
-          "createdAt",
         ],
         where: {
           nip: pejabat.nip,
@@ -99,7 +99,6 @@ export const getPejabatByNip = async (req, res) => {
           "kdduduk",
           "nmduduk",
           "jurubayar",
-          "createdAt",
         ],
         where: {
           [Op.and]: [{ nip: pejabat.nip }, { kdsatker: req.kdsatker }],
@@ -112,7 +111,10 @@ export const getPejabatByNip = async (req, res) => {
         ],
       });
     }
-    res.status(200).json(response);
+    res.status(200).json({
+      message: `Data RUH PEJABAT dengan NIP ${req.params.nip}`,
+      Data: [response], 
+    });
   } catch (error) {
     res.status(500).json({ msg: error.message });
   }

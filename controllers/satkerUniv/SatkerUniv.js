@@ -19,7 +19,6 @@ export const getSatkerUniv = async (req, res) => {
           "provinsi",
           "kdpos",
           "alamat",
-          "createdAt",
         ],
         include: [
           {
@@ -42,7 +41,6 @@ export const getSatkerUniv = async (req, res) => {
           "provinsi",
           "kdpos",
           "alamat",
-          "createdAt",
         ],
         where: {
           userUuid: req.userUuid,
@@ -55,7 +53,10 @@ export const getSatkerUniv = async (req, res) => {
         ],
       });
     }
-    res.status(200).json(response);
+    res.status(200).json({
+      message: "Data SATUAN KERJA UNIVERSITAS",
+      Data: [response], // Membungkus hasil query dalam array 'Data'
+    });
   } catch (error) {
     res.status(500).json({ msg: error.message });
   }
@@ -84,7 +85,6 @@ export const getSatkerUnivByKDsatker = async (req, res) => {
           "provinsi",
           "kdpos",
           "alamat",
-          "createdAt",
         ],
         where: {
           kdsatker: satker.kdsatker,
@@ -110,7 +110,6 @@ export const getSatkerUnivByKDsatker = async (req, res) => {
           "provinsi",
           "kdpos",
           "alamat",
-          "createdAt",
         ],
         where: {
           [Op.and]: [{ kdsatker: satker.kdsatker }, { userUuid: req.userUuid }],
@@ -123,7 +122,10 @@ export const getSatkerUnivByKDsatker = async (req, res) => {
         ],
       });
     }
-    res.status(200).json(response);
+    res.status(200).json({
+      message: `Data SATUAN KERJA UNIVERSITAS`,
+      Data: [response], // Membungkus hasil query dalam array 'Data'
+    });
   } catch (error) {
     res.status(500).json({ msg: error.message });
   }
