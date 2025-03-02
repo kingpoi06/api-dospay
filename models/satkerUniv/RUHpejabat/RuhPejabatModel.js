@@ -1,6 +1,6 @@
 import { Sequelize } from "sequelize";
 import db from "../../../config/Database.js";
-import Satkeruniv from "../SatkerUnivModel.js";
+import Cabangsatker from "../cabang/CabangSatkerModel.js";
 
 const { DataTypes } = Sequelize;
 
@@ -68,7 +68,7 @@ const RUHPejabat = db.define(
         notEmpty: true,
       },
     },
-    kdsatker: {
+    kdanak: {
       type: DataTypes.STRING,
       allowNull: false,
       validate: {
@@ -82,7 +82,7 @@ const RUHPejabat = db.define(
   }
 );
 
-Satkeruniv.hasMany(RUHPejabat);
-RUHPejabat.belongsTo(Satkeruniv, { foreignKey: "kdsatker" });
+Cabangsatker.hasMany(RUHPejabat);
+RUHPejabat.belongsTo(Cabangsatker, { foreignKey: "kdanak" });
 
 export default RUHPejabat;

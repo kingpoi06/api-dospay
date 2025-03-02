@@ -1,4 +1,4 @@
-import Satkeruniv from "../../../models/satkerUniv/SatkerUnivModel.js";
+import CabangSatker from "../../../models/satkerUniv/cabang/CabangSatkerModel.js";
 import RUHPejabat from "../../../models/satkerUniv/RUHpejabat/RuhPejabatModel.js";
 import { Op } from "sequelize";
 
@@ -17,11 +17,12 @@ export const getPejabat = async (req, res) => {
           "kdduduk",
           "nmduduk",
           "jurubayar",
+          "kdanak",
         ],
         include: [
           {
-            model: Satkeruniv,
-            attributes: ["kdsatker", "nmsatker"],
+            model: CabangSatker,
+            attributes: ["kdanak", "nmanak"],
           },
         ],
       });
@@ -36,14 +37,15 @@ export const getPejabat = async (req, res) => {
           "kdduduk",
           "nmduduk",
           "jurubayar",
+          "kdanak",
         ],
         where: {
-            kdsatker: req.kdsatker,
+            kdanak: req.kdanak,
         },
         include: [
           {
-            model: Satkeruniv,
-            attributes: ["kdsatker", "nmsatker"],
+            model: CabangSatker,
+            attributes: ["kdanak", "nmanak"],
           },
         ],
       });
@@ -77,14 +79,15 @@ export const getPejabatByNip = async (req, res) => {
           "kdduduk",
           "nmduduk",
           "jurubayar",
+          "kdanak",
         ],
         where: {
           nip: pejabat.nip,
         },
         include: [
           {
-            model: Satkeruniv,
-            attributes: ["kdsatker", "nmsatker"],
+            model: CabangSatker,
+            attributes: ["kdanak", "kdanak"],
           },
         ],
       });
@@ -99,14 +102,15 @@ export const getPejabatByNip = async (req, res) => {
           "kdduduk",
           "nmduduk",
           "jurubayar",
+          "kdanak",
         ],
         where: {
-          [Op.and]: [{ nip: pejabat.nip }, { kdsatker: req.kdsatker }],
+          [Op.and]: [{ nip: pejabat.nip }, { kdanak: req.kdanak }],
         },
         include: [
           {
-            model: Satkeruniv,
-            attributes: ["kdsatker", "nmsatker"],
+            model: CabangSatker,
+            attributes: ["kdanak", "nmanak"],
           },
         ],
       });
@@ -121,7 +125,7 @@ export const getPejabatByNip = async (req, res) => {
 };
 
 export const createPejabat = async (req, res) => {
-  const { nip, nik, nmpeg, kdjab, nmjab, kdduduk, nmduduk, jurubayar, kdsatker  } = req.body;
+  const { nip, nik, nmpeg, kdjab, nmjab, kdduduk, nmduduk, jurubayar, kdanak  } = req.body;
   try {
     await RUHPejabat.create({
       nip: nip,
@@ -132,8 +136,8 @@ export const createPejabat = async (req, res) => {
       kdduduk: kdduduk,
       nmduduk: nmduduk,
       jurubayar: jurubayar,
-      kdsatker: kdsatker,
-      satkerunivKdsatker: kdsatker,
+      kdanak: kdanak,
+      cabangsatkerKdanak: kdanak,
     });
     res.status(201).json({ msg: "Data RUH pejabat Berhasil Ditambahkan!" });
   } catch (error) {
@@ -150,10 +154,10 @@ export const updatePejabat = async (req, res) => {
       },
     });
     if (!pejabat) return res.status(404).json({ msg: "Data not found!" });
-    const { nip, nik, nmpeg, kdjab, nmjab, kdduduk, nmduduk, jurubayar } = req.body;
+    const { nip, nik, nmpeg, kdjab, nmjab, kdduduk, nmduduk, jurubayar, kdanak } = req.body;
     if (req.role === "pusat" || req.role === "admin" ) {
       await RUHPejabat.update(
-        { nip, nik, nmpeg, kdjab, nmjab, kdduduk, nmduduk, jurubayar },
+        { nip, nik, nmpeg, kdjab, nmjab, kdduduk, nmduduk, jurubayar, kdanak },
         {
           where: {
             nip: pejabat.nip,
@@ -161,13 +165,13 @@ export const updatePejabat = async (req, res) => {
         }
       );
     } else {
-      if (req.kdsatker !== pejabat.kdsatker)
+      if (req.kdanak !== pejabat.kdanak)
         return res.status(403).json({ msg: "Access X" });
       await RUHPejabat.update(
-        { nip, nik, nmpeg, kdjab, nmjab, kdduduk, nmduduk, jurubayar },
+        { nip, nik, nmpeg, kdjab, nmjab, kdduduk, nmduduk, jurubayar, kdanak },
         {
           where: {
-            [Op.and]: [{ nip: pejabat.nip }, { kdsatker: req.kdsatker }],
+            [Op.and]: [{ nip: pejabat.nip }, { kdanak: req.kdanak }],
           },
         }
       );
@@ -186,7 +190,7 @@ export const deletePejabat = async (req, res) => {
       },
     });
     if (!pejabat) return res.status(404).json({ msg: "Data not found!" });
-    const { nip, nik, nmpeg, kdjab, nmjab, kdduduk, nmduduk, jurubayar } = req.body;
+    const { nip, nik, nmpeg, kdjab, nmjab, kdduduk, nmduduk, jurubayar, kdanak } = req.body;
     if (req.role === "pusat" || req.role === "admin" ) {
       await RUHPejabat.destroy({
         where: {
@@ -194,11 +198,11 @@ export const deletePejabat = async (req, res) => {
         },
       });
     } else {
-      if (req.kdsatker !== pejabat.kdsatker)
+      if (req.kdanak !== pejabat.kdanak)
         return res.status(403).json({ msg: "Akses terlarang" });
       await RUHPejabat.destroy({
         where: {
-          [Op.and]: [{ nip: pejabat.nip }, { kdsatker: req.kdsatker }],
+          [Op.and]: [{ nip: pejabat.nip }, { kdanak: req.kdanak }],
         },
       });
     }
